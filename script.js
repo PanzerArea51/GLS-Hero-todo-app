@@ -210,7 +210,16 @@ const addTask = () => {
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
-  menuBtn.addEventListener("click", () => screenWrapper.classList.add("show-category"));
+  menuBtn.addEventListener("click", () => {
+    // Open a blank screen similar to category screen
+    categoryTitle.textContent = "Options";
+    categoryImg.src = "";  // Clear the image for a blank screen
+    numTasks.textContent = "0 Tasks";  // Show 0 tasks initially
+    tasksContainer.innerHTML = `<p class="no-tasks">No tasks available for this section</p>`;  // Placeholder text for no tasks
+    
+    // Show the empty screen
+    screenWrapper.classList.add("show-category");
+  });
   backBtn.addEventListener("click", () => screenWrapper.classList.remove("show-category"));
   addTaskBtn.addEventListener("click", toggleAddTaskForm);
   blackBackdrop.addEventListener("click", toggleAddTaskForm);
