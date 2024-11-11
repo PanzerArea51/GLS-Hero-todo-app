@@ -212,11 +212,6 @@ const addTask = () => {
 document.addEventListener("DOMContentLoaded", () => {
   menuBtn.addEventListener("click", () => {
     // Open a blank screen similar to category screen
-    categoryTitle.textContent = "Options";
-    categoryImg.src = "";  // Clear the image for a blank screen
-    numTasks.textContent = "0 Tasks";  // Show 0 tasks initially
-    tasksContainer.innerHTML = `<p class="no-tasks">No tasks available for this section</p>`;  // Placeholder text for no tasks
-    
     // Show the empty screen
     screenWrapper.classList.add("show-category");
   });
@@ -237,4 +232,28 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTasks();
   updateTotals();
   updateXPBars();  // Initialize progress bars
+});
+
+// Form DOM Elements
+const optionsForm = document.querySelector(".options-form");
+const submitBtn = document.querySelector(".submit-btn");
+
+// Toggle Options Form Visibility
+menuBtn.addEventListener("click", () => {
+    optionsForm.classList.toggle("active"); // Show the form when menu is clicked
+});
+
+// Form Submission Event
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const studentName = document.getElementById("student-name").value.trim();
+    const studentID = document.getElementById("student-id").value.trim();
+    const studentEmail = document.getElementById("student-email").value.trim();
+
+    if (studentName && studentID && studentEmail) {
+        alert(`Submitted: ${studentName}, ${studentID}, ${studentEmail}`);
+        optionsForm.classList.remove("active");
+    } else {
+        alert("Please fill out all fields.");
+    }
 });
