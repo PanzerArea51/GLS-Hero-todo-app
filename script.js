@@ -1,4 +1,5 @@
 // Initialize task and category data
+let coins = JSON.parse(localStorage.getItem("coins")) || 0; // Load coins from localStorage, or initialize at 0
 let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Load tasks from localStorage, or initialize empty array
 let categories = [
   { title: "Physical", img: "muscle.png" },
@@ -12,6 +13,8 @@ const XP_VALUES = {
   medium: 20,
   hard: 30
 };
+
+
 // Define images for each tier in each category
 const CATEGORY_IMAGES = {
   Physical: ["muscle.png", "muscle2.png", "muscle3.png"],
@@ -74,10 +77,15 @@ const updateXPBars = () => {
 const addXP = (category, difficulty) => {
   xpData[category].total += XP_VALUES[difficulty];  // Increase total XP
   xpData[category].levelXP += XP_VALUES[difficulty];  // Increase current level XP
+
   // Check if level-up is achieved (levelXP reaches 100)
   if (xpData[category].levelXP >= 100) {
     xpData[category].levelXP = 0;  // Reset level XP
+    coins += 10; // Award coins for level-up (adjust the amount as needed)
+    localStorage.setItem("coins", JSON.stringify(coins)); // Save updated coins to localStorage
+    updateCoinDisplay(); // Update displayed coin count
   }
+
   localStorage.setItem("xpData", JSON.stringify(xpData)); // Save updated XP data
   updateXPBars(); // Update the XP bar visuals
 };
