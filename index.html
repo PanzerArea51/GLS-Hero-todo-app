@@ -2,8 +2,11 @@
 <html lang="en">
 
 <head>
+  <!-- Meta tags for character set and viewport settings -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Icons and web manifest for the app -->
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="electric.jpg" />
   <link rel="icon" type="image/png" sizes="16x16" href="electric.jpg" />
@@ -11,35 +14,48 @@
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
   <meta name="msapplication-TileColor" content="#2d89ef" />
   <meta name="theme-color" content="#ffffff" />
+
+  <!-- Stylesheet link -->
   <link rel="stylesheet" href="style.css" />
   <title>Javascript Todo-list App</title>
-
 </head>
 
 <body>
+  <!-- Main wrapper containing all screens and elements -->
   <div class="wrapper">
+    
+    <!-- Backdrop for the screens -->
     <div class="screen-backdrop"></div>
+
+    <!-- Home screen displaying welcome message and categories -->
     <div class="home-screen screen">
+      <!-- Header section with hamburger menu button and user greeting -->
       <div class="head-wrapper">
         <div class="menu-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
+          <!-- SVG for the hamburger icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
           </svg>
         </div>
+        <!-- Welcome message with user name and task count -->
         <div class="welcome">
           <div class="content">
             <h1>Hello Fiqri</h1>
             <p>Today you have <span id="total-tasks">0</span> missions</p>
           </div>
+          <!-- User image with backdrop -->
           <div class="img">
             <div class="backdrop"></div>
             <img src="boy.jpg" alt="" />
           </div>
         </div>
       </div>
+
+      <!-- Categories section for different types of tasks -->
       <div class="categories-wrapper">
         <div class="categories">
+          
+          <!-- Physical category -->
           <div class="category">
             <div class="left">
               <img src="muscle.png" alt="sun" />
@@ -48,16 +64,17 @@
                 <p>5 Tasks</p>
               </div>
             </div>
+            <!-- Options button for category actions -->
             <div class="options">
               <div class="toggle-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
                 </svg>
               </div>
             </div>
           </div>
+
+          <!-- Academic category -->
           <div class="category">
             <div class="left">
               <img src="enchanted_book.png" alt="sun" />
@@ -68,14 +85,14 @@
             </div>
             <div class="options">
               <div class="toggle-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
                 </svg>
               </div>
             </div>
           </div>
+
+          <!-- Spiritual category -->
           <div class="category">
             <div class="left">
               <img src="leaf.png" alt="sun"/>
@@ -86,29 +103,32 @@
             </div>
             <div class="options">
               <div class="toggle-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                  stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
                 </svg>
               </div>
             </div>
           </div>
+
         </div>
 
+        <!-- XP bars for each category -->
         <div class="xp-bars">
+          <!-- Physical XP -->
           <div class="xp-bar" id="physical-bar">
             <h2>Physical XP</h2>
             <div class="progress">
               <div class="progress-fill" id="physical-fill"></div>
             </div>
           </div>
+          <!-- Academic XP -->
           <div class="xp-bar" id="academic-bar">
             <h2>Academic XP</h2>
             <div class="progress">
               <div class="progress-fill" id="academic-fill"></div>
             </div>
           </div>
+          <!-- Spiritual XP -->
           <div class="xp-bar" id="spiritual-bar">
             <h2>Spiritual XP</h2>
             <div class="progress">
@@ -119,74 +139,17 @@
 
       </div>
     </div>
+
+    <!-- Category screen showing detailed tasks -->
     <div class="category-screen screen">
       <div class="head-wrapper">
+        <!-- Back button for category screen -->
         <div class="back-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
           </svg>
         </div>
-        <div class="category-screen screen">
-          <div class="head-wrapper">
-            <div class="back-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="options">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-          </svg>
-        </div>
       </div>
-      <!-- options form -->
-
-      <div class="options-form">
-        <h1 class="form-heading">PHYSICAL TASK</h1>
-        <p class="form-subheading">Run 5km in 45 minute</p>
-        <div class="input-group">
-          <label for="student-name">Name</label>
-          <input type="text" id="student-name" required />
-        </div>
-        <div class="input-group">
-          <label for="student-id">Student ID</label>
-          <input type="text" id="student-id" required />
-        </div>
-        <div class="input-group">
-          <label for="student-email">Email</label>
-          <input type="file" id="student-file" required />
-        </div>
-        <div class="btns">
-          <button class="submit-btn">Submit</button>
-        </div>
-      </div>
-
-      <div class="options-form" id="form-academic-task">
-        <h1 class="form-heading">ACADEMIC TASK</h1>
-        <p class="form-subheading">Complete homework assignment</p>
-        <div class="input-group">
-          <label for="student-name-2">Name</label>
-          <input type="text" id="student-name-2" required />
-        </div>
-        <div class="input-group">
-          <label for="student-id-2">Student ID</label>
-          <input type="text" id="student-id-2" required />
-        </div>
-        <div class="input-group">
-          <label for="student-file-2">Upload Assignment</label>
-          <input type="file" id="student-file-2" required />
-        </div>
-        <div class="btns">
-          <button class="submit-btn">Submit</button>
-        </div>
-      </div>
-      <!-- options form -->
       <div class="category-details">
         <img src="images/boy.png" alt="" id="category-img" />
         <div class="details">
@@ -194,37 +157,41 @@
           <h1 id="category-title">Personal</h1>
         </div>
       </div>
+
+      <!-- Tasks list for the selected category -->
       <div class="tasks-wrapper">
         <div class="tasks">
           <div class="task-wrapper">
             <label for="task" class="task">
               <input type="checkbox" name="task" id="task" />
-              <span class="checkmark"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <span class="checkmark">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               </span>
               <p>Buy a new car lorem</p>
             </label>
             <div class="delete">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
               </svg>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
+
+    <!-- Add task button to open task form -->
     <div class="add-task-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-        class="w-6 h-6">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
       </svg>
     </div>
+
+    <!-- Black backdrop for modal effects -->
     <div class="black-backdrop"></div>
+
+    <!-- Add task form -->
     <div class="add-task">
       <div class="add-task-backdrop"></div>
       <h1 class="heading">Add Task</h1>
@@ -239,20 +206,70 @@
       <div class="input-group">
         <label for="difficulty">Difficulty Level</label>
         <select id="difficulty" name="difficulty">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
         </select>
-    </div>
-    
+      </div>
       <div class="btns">
         <button class="cancel-btn">Cancel</button>
         <button class="add-btn">Add</button>
       </div>
     </div>
+
+    <!-- Empty screen for additional forms -->
+    <div class="empty-screen screen">
+      <div class="head-wrapper">
+        <div class="back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+          </svg>
+        </div>
+      </div>
+      <h1>Student Information Forms</h1>
+
+      <!-- Personal Information Form -->
+      <form class="student-form">
+        <h2>Personal Information</h2>
+        <label for="student-name">Name:</label>
+        <input type="text" id="student-name" name="student-name" required>
+        
+        <label for="student-id">Student ID:</label>
+        <input type="text" id="student-id" name="student-id" required>
+        
+        <label for="student-age">Age:</label>
+        <input type="number" id="student-age" name="student-age" required>
+      </form>
+
+      <!-- Academic Information Form -->
+      <form class="student-form">
+        <h2>Academic Information</h2>
+        <label for="student-course">Course:</label>
+        <input type="text" id="student-course" name="student-course" required>
+        
+        <label for="student-major">Major:</label>
+        <input type="text" id="student-major" name="student-major" required>
+        
+        <label for="student-year">Year:</label>
+        <input type="number" id="student-year" name="student-year" required>
+      </form>
+
+      <!-- Contact Information Form -->
+      <form class="student-form">
+        <h2>Contact Information</h2>
+        <label for="student-email">Email:</label>
+        <input type="email" id="student-email" name="student-email" required>
+        
+        <label for="student-phone">Phone Number:</label>
+        <input type="tel" id="student-phone" name="student-phone" required>
+        
+        <label for="student-address">Address:</label>
+        <textarea id="student-address" name="student-address" rows="2" required></textarea>
+      </form>
+    </div>
   </div>
 
+  <!-- JavaScript file link -->
   <script src="script.js"></script>
 </body>
-
 </html>
