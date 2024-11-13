@@ -29,12 +29,15 @@
 
     <!-- Home screen displaying welcome message and categories -->
     <div class="home-screen screen">
-      <!-- Header section with hamburger menu button and user greeting -->
+      <!-- Header section with menu button and user greeting -->
       <div class="head-wrapper">
+        <!-- Menu button for form -->
         <div class="menu-btn">
-        <!-- Add this button to your HTML where you want it to appear -->
-        <button id="topRightBtn" class="top-right-btn">Open Screen</button>
-          <!-- SVG for the hamburger icon -->
+          <button id="topRightBtn" class="top-right-btn">Open Screen</button>
+        </div>
+        <!-- leaderboard button -->
+        <div class="leaderboard-btn">
+          <button id="leaderboardBtn" class="leaderboard-btn">Leaderboard</button>
         </div>
         <!-- Coin count display -->
         <div class="coin-display">
@@ -227,6 +230,8 @@
     <div class="form-screen screen" id="form-screen">
       <button class="back-btn" id="form-back-btn">Back</button>
       <h1>Student Forms</h1>
+      <br>
+      <br>
       <form id="form1">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required>
@@ -239,6 +244,13 @@
         <label for="grade">Grade:</label>
         <input type="text" id="grade" name="grade" required>
       </form>
+    </div>
+
+    <!--  Leaderboard screen -->
+    <div class="leaderboard-screen " id="leaderboard-screen">
+      <button class="back-btn" id="form-back-btn">Back</button>
+      <h1>Leaderboard</h1>
+      <img src="leaderboard.png" alt="">
     </div>
     
 
