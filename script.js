@@ -30,6 +30,7 @@ let xpData = JSON.parse(localStorage.getItem("xpData")) || {
 };
 
 // DOM Elements
+const leaderboardBtn = document.getElementById("leaderboardBtn");
 const menuBtn = document.querySelector(".menu-btn");
 const backBtn = document.querySelector(".back-btn");
 const screenWrapper = document.querySelector(".wrapper");
@@ -48,17 +49,17 @@ const categoryTitle = document.getElementById("category-title");
 const categoryImg = document.getElementById("category-img");
 const numTasks = document.getElementById("num-tasks");
 const coinsDisplay = document.getElementById("coins-count");
-const empty = document.getElementById("empty-screen screen");
 
-// Utility functions
 
 // Save tasks to localStorage
 const saveTasks = () => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
+
 // Calculate tier level based on total XP
 const getTierLevel = (totalXP) => Math.min(Math.floor(totalXP / 100), 2);  // 0 = Tier 1, 1 = Tier 2, 2 = Tier 3
+
 
 // Function to update the progress bars and images based on the XP tiers
 const updateXPBars = () => {
@@ -75,6 +76,7 @@ const updateXPBars = () => {
     }
   });
 };
+
 
 // Add XP to category, level up, and save to localStorage
 const addXP = (category, difficulty) => {
@@ -93,6 +95,7 @@ const addXP = (category, difficulty) => {
   updateXPBars(); // Update the XP bar visuals
 };
 
+
 // Update task and category totals
 const updateTotals = () => {
   const categoryTasks = tasks.filter(task => task.category === selectedCategory.title);
@@ -100,10 +103,12 @@ const updateTotals = () => {
   totalTasks.textContent = tasks.length; // Update total task count
 };
 
+
 // Update coin
 const updateCoinDisplay = () => {
   document.getElementById("coin-count").textContent = coins;
 };
+
 
 // Render categories on the screen
 const renderCategories = () => {
@@ -131,6 +136,7 @@ const renderCategories = () => {
     categoriesContainer.appendChild(div);
   });
 };
+
 
 // Render tasks for the selected category
 const renderTasks = () => {
@@ -186,7 +192,6 @@ const toggleAddTaskForm = () => {
   addTaskWrapper.classList.toggle("active");
   blackBackdrop.classList.toggle("active");
 
-
 };
 
 // Add a new task
@@ -215,19 +220,28 @@ const addTask = () => {
 
 const formScreen = document.getElementById("form-screen");
 const formBackBtn = document.getElementById("form-back-btn");
-
 // Show the form screen when the menu button is clicked
 menuBtn.addEventListener("click", () => {
   formScreen.style.display = "flex";
 });
-
 // Hide the form screen when the back button is clicked
 formBackBtn.addEventListener("click", () => {
   formScreen.style.display = "none";
 });
 
+const leaderboardScreen = document.getElementById("leaderboard-screen");
+
+
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
+  leaderboardBtn.addEventListener("click", () => {
+    console.log("Leaderboard button clicked");
+    leaderboardScreen.style.display = "flex"; // Show leaderboard screen
+    leaderboardScreen.style.visibility = "visible";
+    leaderboardScreen.style.opacity = "1";
+
+  });
+  leaderboardBtn.addEventListener("click", () => screenWrapper.classList.add("leaderboard-screen"));
   menuBtn.addEventListener("click", () => screenWrapper.classList.add("form-screen screen"));
   backBtn.addEventListener("click", () => screenWrapper.classList.remove("show-category"));
   addTaskBtn.addEventListener("click", toggleAddTaskForm);
@@ -245,52 +259,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTotals(); // Update task totals
   updateXPBars();  // Initialize progress bars
 });
-
-// DOM Elements for the empty screen and wrapper
-const emptyScreenWrapper = document.createElement('div');
-emptyScreenWrapper.classList.add('empty-screen wrapper');
-document.body.appendChild(emptyScreenWrapper);
-
-// CSS class to handle empty screen visibility
-const style = document.createElement('style');
-style.innerHTML = `
-  .empty-screen-wrapper {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
-    z-index: 1000;
-  }
-
-  .empty-screen-wrapper.show {
-    display: block;
-  }
-
-  .empty-screen {
-    padding: 20px;
-    text-align: center;
-  }
-
-  .empty-screen .back-btn {
-    padding: 10px;
-    margin-bottom: 20px;
-    background-color: #ff5c5c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .empty-screen .back-btn:hover {
-    background-color: #e04141;
-  }
-`;
-document.head.appendChild(style);
-
-
 
 
 
