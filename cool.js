@@ -13,7 +13,7 @@ const renderSubmissions = () => {
   submissions.forEach((submission, index) => {
     const item = document.createElement("li");
     item.innerHTML = `
-      <p><strong>${submission.name} (${submission.studentId})</strong> - ${submission.category}</p>
+      <p><strong>${submission.firstName} (${submission.lastName})</strong> - ${submission.category}</p>
       <p>File: ${submission.fileName}</p>
       <button class="approve" data-index="${index}">Approve</button>
       <button class="reject" data-index="${index}">Reject</button>
