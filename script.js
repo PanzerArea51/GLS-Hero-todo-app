@@ -410,7 +410,7 @@ function storeFormData(event) {
   };
 
   // Retrieve existing form data from localStorage or initialize an empty array
-  const submissions = JSON.parse(localStorage.getItem("formSubmissions")) || [];
+  const submissions = JSON.parse(localStorage.getItem("studentSubmissions")) || [];
   submissions.push(formData); // Add the new data
 
   // Save back to localStorage
@@ -440,4 +440,3 @@ if (storedXp > 20) {
   localStorage.removeItem('xp'); // Clear the stored XP after adding it
   addXP('Physical', 'form');
 }
-
