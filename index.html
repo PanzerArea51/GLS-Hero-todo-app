@@ -17,28 +17,29 @@
 
   <!-- Stylesheet link -->
   <link rel="stylesheet" href="style.css" />
-  <title>Javascript Todo-list App</title>
+  <title>Ascendify</title>
 </head>
 
 <body>
   <!-- Main wrapper containing all screens and elements -->
   <div class="wrapper">
-    
     <!-- Backdrop for the screens -->
     <div class="screen-backdrop"></div>
-
     <!-- Home screen displaying welcome message and categories -->
     <div class="home-screen screen">
       <!-- Header section with menu button and user greeting -->
       <div class="head-wrapper">
         <!-- Menu button for form -->
         <div class="menu-btn">
-          <button id="topRightBtn" class="top-right-btn">Open Screen</button>
+          <button id="topRightBtn" class="top-right-btn" style="background-color: gold;">ASCEND</button>
         </div>
         <!-- leaderboard button -->
-        <div class="leaderboard-btn">
+        <div class="leaderboard-btnn">
           <button id="leaderboardBtn" class="leaderboard-btn">Leaderboard</button>
         </div>
+        <!-- website name -->
+        <div class="app-header">
+          <img src="ascendify.png" alt="lool" class="app-logo"></div>
         <!-- Coin count display -->
         <div class="coin-display">
           <img src="diamond.png" alt="Coin Icon" class="coin-icon" /> <!-- Replace src with your actual coin image -->
@@ -48,12 +49,15 @@
         <div class="welcome">
           <div class="content">
             <h1>Hello Fiqri</h1>
-            <p>Today you have <span id="total-tasks">0</span> missions</p>
+            <p>A new day, a new chance to improve yourself!</p>
           </div>
           <!-- User image with backdrop -->
           <div class="img">
+            <div class="hero">
+              <img src="hero.png" alt="" id="hero"/>
+            </div>
+
             <div class="backdrop"></div>
-            <img src="boy.jpg" alt="" />
           </div>
         </div>
       </div>
@@ -162,7 +166,7 @@
       <div class="category-details">
         <img src="images/boy.png" alt="" id="category-img" />
         <div class="details">
-          <p id="num-tasks">8 tasks</p>
+
           <h1 id="category-title">Personal</h1>
         </div>
       </div>
@@ -229,31 +233,212 @@
     <!--  Form screen -->
     <div class="form-screen screen" id="form-screen">
       <button class="back-btn" id="form-back-btn">Back</button>
-      <h1>Student Forms</h1>
-      <br>
-      <br>
-      <form id="form1">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-      </form>
-      <form id="form2">
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" required>
-      </form>
-      <form id="form3">
-        <label for="grade">Grade:</label>
-        <input type="text" id="grade" name="grade" required>
-      </form>
+
+      <div class="title">
+        <img src="1 up.png" alt="Form Image" class="form-image">
+        <h3>LEVEL-UP TASK</h3>
+        <span class="icon-level-up"></span>
+      </div>
+      <p>Complete the task to level up</p>
+
+      <div class="form">
+        <div class="title">PHYSICAL
+          <img src="muscle.png" alt="icon" class="form-title-icon">
+        </div>
+        <p>Submit your SEGAK test result</p>
+        <div class="input-container ic1">
+          <input id="firstname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">First name</label>
+        </div>
+        <div class="input-container ic2">
+          <input id="lastname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Student Id</label>
+        </div>
+        <div class="input-container ic3">
+          <input id="file" class="input" type="file" name="file" required />
+          <label for="file" class="placeholder">Attach File</label>
+        </div>
+        <button type="text" class="submit" id="physical-submit">submit</button>
+      </div>
+
+      <div class="form">
+        <div class="title">ACADEMIC
+          <img src="enchanted_book.png" alt="icon" class="form-title-icon">
+        </div>
+        <div class="input-container ic1">
+          <input id="firstname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">First name</label>
+        </div>
+        <div class="input-container ic2">
+          <input id="lastname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Student Id</label>
+        </div>
+        <div class="input-container ic3">
+          <input id="file" class="input" type="file" name="file" required />
+          <label for="file" class="placeholder">Attach File</label>
+        </div>
+        <button type="text" class="submit" id="academic-submit">submit</button>
+      </div>
+
+      <div class="form">
+        <div class="title">SPIRITUAL (Muslim)
+          <img src="moon.png" alt="icon" class="form-title-icon">
+        </div>
+        <div class="input-container ic1">
+          <input id="firstname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">First name</label>
+        </div>
+        <div class="input-container ic2">
+          <input id="lastname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Student Id</label>
+        </div>
+        <div class="input-container ic3">
+          <input id="file" class="input" type="file" name="file" required />
+          <label for="file" class="placeholder">Attach File</label>
+        </div>
+        <button type="text" class="submit" id="mus-submit">submit</button>
+      </div>
+
+      <div class="form">
+        <div class="title">SPIRITUAL (Non-Muslim)
+          <img src="leaf.png" alt="icon" class="form-title-icon">
+        </div>
+        <div class="input-container ic1">
+          <input id="firstname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">First name</label>
+        </div>
+        <div class="input-container ic2">
+          <input id="lastname" class="input" type="text" placeholder=" " />
+          <div class="cut"></div>
+          <label for="lastname" class="placeholder">Student Id</label>
+        </div>
+        <div class="input-container ic3">
+          <input id="file" class="input" type="file" name="file" required />
+          <label for="file" class="placeholder">Attach File</label>
+        </div>
+        <button type="text" class="submit" id="nun-submit">submit</button>
+      </div>
     </div>
 
     <!--  Leaderboard screen -->
-    <div class="leaderboard-screen " id="leaderboard-screen">
-      <button class="back-btn" id="form-back-btn">Back</button>
-      <h1>Leaderboard</h1>
-      <img src="leaderboard.png" alt="">
-    </div>
-    
+    <div class="leaderboard-screen" id="leaderboard-screen">
+      <section class="container" id="leaderboard">
+        <button id="leaderboard-back-btn" class="back-btn">Back</button>
 
+        <h2>
+         Leaderboard
+         <img src="star.jpeg" alt="Star Icon" id="star-icon" />
+         <img src="star.jpeg" alt="Star Icon" id="star-icon" />
+         <img src="star.jpeg" alt="Star Icon" id="star-icon" />
+        </h2>
+
+        <div class="leaderboard-item">
+         <div class="rank">
+          1
+         </div>
+         <div class="name">
+          Nur Saida
+         </div>
+         <div class="score">
+          1000
+         </div>
+        </div>
+        <div class="leaderboard-item">
+         <div class="rank">
+          2
+         </div>
+         <div class="name">
+          Abraham Shawn
+         </div>
+         <div class="score">
+          900
+         </div>
+        </div>
+        <div class="leaderboard-item">
+         <div class="rank">
+          3
+         </div>
+         <div class="name">
+          Ibadurrahman
+         </div>
+         <div class="score">
+          800
+         </div>
+        </div>
+        <div class="leaderboard-item">
+         <div class="rank">
+          4
+         </div>
+         <div class="name">
+          Sarah Alvina
+         </div>
+         <div class="score">
+          700
+         </div>
+        </div>
+        <div class="leaderboard-item">
+         <div class="rank">
+          5
+         </div>
+         <div class="name">
+          Daryl Bently
+         </div>
+         <div class="score">
+          600
+         </div>
+        </div>
+        <div class="leaderboard-item">
+          <div class="rank">
+           6
+          </div>
+          <div class="name">
+           Arash Assyakirin
+          </div>
+          <div class="score">
+           600
+          </div>
+         </div>
+         <div class="leaderboard-item">
+          <div class="rank">
+           7
+          </div>
+          <div class="name">
+           Abie Aiden 
+          </div>
+          <div class="score">
+           540
+          </div>
+         </div>
+         <div class="leaderboard-item">
+          <div class="rank">
+           8
+          </div>
+          <div class="name">
+           Afiq Hafizin
+          </div>
+          <div class="score">
+           510
+          </div>
+         </div>
+         <div class="leaderboard-item">
+          <div class="rank">
+           9
+          </div>
+          <div class="name">
+           Alfie
+          </div>
+          <div class="score">
+           500
+          </div>
+         </div>
+       </section>
     </div>
   </div>
 
@@ -261,3 +446,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
