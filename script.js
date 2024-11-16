@@ -1,4 +1,4 @@
-localStorage.clear()
+
 // Initialize task and category data
 let coins = JSON.parse(localStorage.getItem("coins")) || 0; // Load coins from localStorage, or initialize at 0
 let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Load tasks from localStorage, or initialize empty array
@@ -12,7 +12,8 @@ let selectedCategory = categories[0]; // Default selected category
 const XP_VALUES = {
   easy: 3,
   medium: 3,
-  hard: 3
+  hard: 3,
+  form: 10
 };
 
 // Predefined tasks
@@ -116,7 +117,7 @@ const predefinedTasks = [
 const CATEGORY_IMAGES = {
   Physical: ["muscle.png", "muscle2.png", "mya.png"],
   Academic: ["enchanted_book.png", "enchanted_book2.png", "qayyum.png"],
-  Spiritual: ["leaf.png", "tree.png", "hadif.png"]
+  Spiritual: ["low hadif.png", "tree.png", "twin of faith.png"]
 };
 // Initialize or retrieve XP data
 let xpData = JSON.parse(localStorage.getItem("xpData")) || {
@@ -181,10 +182,14 @@ const addXP = (category, difficulty) => {
 
   // Check if level-up is achieved (levelXP reaches 100)
   if (xpData[category].levelXP >= 100) {
-    xpData[category].levelXP = 0;  // Reset level XP
-    coins += 10; // Award coins for level-up (adjust the amount as needed)
-    localStorage.setItem("coins", JSON.stringify(coins)); // Save updated coins to localStorage
-    updateCoinDisplay(); // Update displayed coin count
+      xpData.Physical.levelXP = 0; // Reset level XP
+      xpData.Physical.total += 100; // Add 100 XP to total
+      localStorage.setItem("xpData", JSON.stringify(xpData));
+      renderTasks(); // Refresh task list
+      xpData[category].levelXP = 0;  // Reset level XP
+      coins += 10; // Award coins for level-up (adjust the amount as needed)
+      localStorage.setItem("coins", JSON.stringify(coins)); // Save updated coins to localStorage
+      updateCoinDisplay(); // Update displayed coin count
   }
 
   localStorage.setItem("xpData", JSON.stringify(xpData)); // Save updated XP data
@@ -398,37 +403,66 @@ const saveSubmission = (submission) => {
 document.querySelectorAll(".form .submit").forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
+    alert("Sent! Awaiting teacher approval.");
+
     const form = button.closest(".form");
     const name = form.querySelector("#firstname").value.trim();
     const studentId = form.querySelector("#lastname").value.trim();
-    const fileInput = form.querySelector("#file");
     const category = form.querySelector(".title").textContent.trim();
-    
+    const formId = button.closest(".form").id;
+    const fileInput = document.querySelector(`#${formId} #file`);
+    formData.append("file", file);
+
+    // Validate required fields
     if (!name || !studentId || !fileInput.files.length) {
       alert("Please complete all fields.");
       return;
     }
-    
+
     // Create a submission object
+    const file = fileInput.files[0];
     const submission = {
       name,
       studentId,
       category,
-      fileName: fileInput.files[0].name,
+      fileName: file.name,
       status: "Pending", // Initial status
     };
 
     // Save submission to localStorage
     saveSubmission(submission);
 
-    alert("Task submitted! Await teacher approval.");
-    form.reset();
+    // Create and send FormData
+    const formData = new FormData();
+    formData.append("file", file);
+
+    fetch("/submit", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert("Task submitted! Await teacher approval.");
+        form.reset(); // Reset the form after successful submission
+      })
+      .catch((error) => console.error(error));
   });
 });
 
-const storedXp = JSON.parse(localStorage.getItem('xp')) || 0;
+
+const storedXp = parseInt(localStorage.getItem('xp')) || 0;
+console.log(storedXp)
 if (storedXp > 0) {
   xpData.Physical.levelXP += 10; 
   console.log("added")
   localStorage.removeItem('xp'); // Clear the stored XP after adding it
+  addXP('Physical', 'form');
 }
+
+if (storedXp > 20) {
+  xpData.Physical.levelXP += 10; 
+  console.log("added")
+  localStorage.removeItem('xp'); // Clear the stored XP after adding it
+  addXP('Physical', 'form');
+}
+
