@@ -385,69 +385,44 @@ leaderboardBackBtn.addEventListener("click", () => {
   leaderboardScreen.classList.add("fade-out");
   setTimeout(() => {
       leaderboardScreen.style.display = "none";
-  }, 500); // Match the animation duration
-
-      
+  }, 500); // Match the animation duration  
 });
 
-const submissionsKey = "studentSubmissions"; // Key for submissions storage
+function storeFormData(event) {
+  event.preventDefault(); // Prevent the default form submission behavior
 
-// Save a submission to localStorage
-const saveSubmission = (submission) => {
-  const submissions = JSON.parse(localStorage.getItem(submissionsKey)) || [];
-  submissions.push(submission);
-  localStorage.setItem(submissionsKey, JSON.stringify(submissions));
-};
+  // Capture form inputs
+  const firstName = document.getElementById("firstname").value.trim();
+  const lastName = document.getElementById("lastname").value.trim();
+  const fileInput = document.getElementById("file");
 
-// Handle task submission
-document.querySelectorAll(".form .submit").forEach((button) => {
-  button.addEventListener("click", (event) => {
-    event.preventDefault();
-    alert("Sent! Awaiting teacher approval.");
-
-    const form = button.closest(".form");
-    const name = form.querySelector("#firstname").value.trim();
-    const studentId = form.querySelector("#lastname").value.trim();
-    const category = form.querySelector(".title").textContent.trim();
-    const formId = button.closest(".form").id;
-    const fileInput = document.querySelector(`#${formId} #file`);
-    formData.append("file", file);
-
-    // Validate required fields
-    if (!name || !studentId || !fileInput.files.length) {
-      alert("Please complete all fields.");
+  if (!firstName || !lastName || !fileInput.files.length) {
+      alert("Please fill in all fields and attach a file.");
       return;
-    }
+  }
 
-    // Create a submission object
-    const file = fileInput.files[0];
-    const submission = {
-      name,
-      studentId,
-      category,
-      fileName: file.name,
-      status: "Pending", // Initial status
-    };
+  // Create an object to store form data
+  const formData = {
+      firstName,
+      lastName,
+      fileName: fileInput.files[0].name,
+      submissionDate: new Date().toISOString()
+  };
 
-    // Save submission to localStorage
-    saveSubmission(submission);
+  // Retrieve existing form data from localStorage or initialize an empty array
+  const submissions = JSON.parse(localStorage.getItem("formSubmissions")) || [];
+  submissions.push(formData); // Add the new data
 
-    // Create and send FormData
-    const formData = new FormData();
-    formData.append("file", file);
+  // Save back to localStorage
+  localStorage.setItem("studentSubmissions", JSON.stringify(submissions));
 
-    fetch("/submit", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        alert("Task submitted! Await teacher approval.");
-        form.reset(); // Reset the form after successful submission
-      })
-      .catch((error) => console.error(error));
-  });
-});
+  alert("Form data successfully saved to local storage!");
+  document.getElementById("physical-submit").reset(); // Optional: Clear form inputs
+}
+
+// Attach event listener to the submit button
+document.getElementById("physical-submit").addEventListener("click", storeFormData);
+
 
 
 const storedXp = parseInt(localStorage.getItem('xp')) || 0;
