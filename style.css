@@ -6,6 +6,24 @@
     width: 0;
 }
 
+.app-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Ensure the app logo is positioned relative to its parent */
+}
+
+.app-logo {
+    position: absolute; /* Make the logo float */
+    top: -40px; /* Adjust as necessary */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 90px; /* Adjust initial size */
+    height: 90px;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+
 /* General Reset and Box Model */
 * {
     margin: 0;
@@ -48,7 +66,21 @@ body {
 .wrapper .screen {
     min-width: 100%;
     flex: 1;
-    transition: all 0.3s;
+    transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1); /* Smooth transition for screens */
+}
+
+/* Enhance Category View */
+.wrapper.show-category .home-screen,
+.wrapper.show-category .category-screen {
+    transform: translateX(-100%) scale(0.95); /* Add a scaling effect */
+    opacity: 0.9; /* Slight fade for effect */
+}
+
+/* Adding Parallax Effect */
+.wrapper.show-category .home-screen .head-wrapper,
+.wrapper.show-category .category-screen .head-wrapper {
+    transition: transform 0.6s ease-in-out;
+    transform: translateY(-10px); /* Parallax-like effect on headers */
 }
 
 /* Backdrop behind screens */
@@ -60,10 +92,12 @@ body {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 0 0 50% 50%;
-    background-color: #39a6f0; /* Light blue backdrop */
-    z-index: -1; /* Behind the content */
-    transition: all 0.3s;
+    background: linear-gradient(135deg, #39a6f0, #c724b1); /* Gradient for a dynamic look */
+    z-index: -1;
+    transition: transform 0.6s cubic-bezier(0.42, 0, 0.58, 1), background-color 0.6s; /* Smooth easing */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); /* Add depth */
 }
+
 
 /* Transform the wrapper for category view */
 .wrapper.show-category .home-screen,
@@ -73,7 +107,17 @@ body {
 
 /* Change position of the backdrop during screen transitions */
 .wrapper.show-category .screen-backdrop {
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -80%) scale(1.2); /* Scale and reposition */
+    background: linear-gradient(135deg, #c724b1, #39a6f0); /* Reverse gradient */
+}
+
+@keyframes backdropGlow {
+    0%, 100% {
+        background: linear-gradient(135deg, #39a6f0, #c724b1);
+    }
+    50% {
+        background: linear-gradient(135deg, #c724b1, #39a6f0);
+    }
 }
 
 /* Header section inside the wrapper */
@@ -357,9 +401,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #c724b1;
-    transition: all 0.3s;
+    background: linear-gradient(135deg, #39a6f0, #c724b1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
+
 
 /* Hover effect for Add Task button */
 .add-task-btn:hover {
@@ -553,45 +599,15 @@ body {
     transition: width 0.3s;
 }
 
-/* Empty screen when there's no content */
-.empty-screen {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.empty-screen h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
-}
-
-.empty-screen p {
-    font-size: 1.2em;
-    color: #555;
-}
-
-/* Show empty screen */
-.empty-screen.visible {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+.hero {
+    bottom: 15%;
 }
 
 /* Coin Display */
 .coin-display {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20px;
   }
   
   .coin-icon {
@@ -615,26 +631,192 @@ body {
   .top-right-btn:hover {
     background-color: #0056b3;
   }
-  .form-screen {
+/* Improved form screen styling */
+.form-screen {
     display: none;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: #f7f9fc; /* Softer background for better contrast */
     z-index: 1000;
     text-align: center;
-    padding-top: 20px;
-  }
-  .form-screen h1 {
-    font-size: 2em;
+    padding: 30px 20px; /* Increased padding for a spacious feel */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Header styling for form */
+.form-screen h1 {
+    font-size: 2rem;
     margin-bottom: 20px;
+    color: #333;
+    font-weight: 700;
+    margin-top: 20px;
+}
+
+/* Improved form margin and alignment */
+.form-screen form {
+
+    margin-bottom: 30000px;
+    margin: auto;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling form input fields */
+
+
+
+.form .form-title-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    vertical-align: middle; /* Align image with the text */
+}
+  
+
+.form {
+    background-color: rgb(180, 239, 250);
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+    max-width: 320px;
+    width: 90%;
+    margin: 50px auto;
+    outline: auto;
   }
-  .form-screen form {
-    margin-bottom: 20px;
+
+  .form-screen {
+    overflow-y: auto; /* or overflow-y: scroll; */
+    max-height: 100%; /* or any other height you want */
   }
-  .form-screen .back-btn {
+
+
+  
+  .title, .subtitle {
+    color: black;
+    font-family: sans-serif;
+    font-weight: 600;
+  }
+  
+  .title {
+    font-size: 36px;
+    margin-top: 30px;
+  }
+  
+  .subtitle {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  .input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .input {
+    background-color: rgb(232, 255, 255);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    color: #000000;
+    font-size: 18px;
+    height: 100%;
+    padding: 4px 20px 0;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .input:focus {
+    border-color: #08d;
+    box-shadow: 0 0 20px rgba(8, 136, 221, 0.5);
+  }
+  
+  .placeholder {
+    color: black;
+    font-family: sans-serif;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    transform-origin: 0 50%;
+    transition: transform 300ms, color 300ms;
+  }
+  
+  .input:focus ~ .placeholder,
+  .input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+    color: #08d;
+  }
+  
+  .submit {
+    background-color: #08d;
+    border-radius: 12px;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 38px;
+    outline: none;
+    text-align: center;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .submit:hover {
+    background-color: #06b;
+  }
+  
+  
+  .submit:active {
+    background-color: #06b;
+  }
+  
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Styling buttons */
+.btns button {
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btns button:hover {
+    background-color: #0056b3;
+}
+
+
+.form-screen .back-btn {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -644,8 +826,173 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-screen .back-btn:hover {
+    background-color: #0056b3;
+}
+
+
+  .leaderboard-screen {
+    
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f7f9fc; /* Softer background for better contrast */
+    z-index: 1000;
+    text-align: center;
+    padding: 30px 40px; /* Increased padding for a spacious feel */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   }
-  .form-screen .back-btn:hover {
+
+  .leaderboard-screen h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+
+
+  .leaderboard-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .leaderboard-btn :hover {
     background-color: #0056b3;
   }
-    
+
+ 
+#leaderboard {
+    background-color: light-gray;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+ 
+#leaderboard h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+ 
+.leaderboard-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: powderblue;
+    border-radius: 12px;
+}
+ 
+.leaderboard-item .rank {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+}
+ 
+.leaderboard-item .name {
+
+    font-size: 18px;
+    color: #333333;
+}
+ 
+.leaderboard-item .score {
+    font-size: 18px;
+    color: #333333;
+}
+
+#leaderboard-back-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#leaderboard-back-btn:hover {
+    background-color: #0056b3;
+}
+#star-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    vertical-align: middle; /* Aligns the icon with the text */
+    margin-left: 8px; /* Adds space between the text and icon */
+  }
+
+/* Form screen transition */
+.form-screen.slide-in {
+    animation: slideInFromRight 0.5s forwards;
+}
+
+.form-screen.slide-out {
+    animation: slideOutToRight 0.5s forwards;
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+/* Leaderboard screen transition */
+.leaderboard-screen.fade-in {
+    animation: fadeIn 0.5s forwards;
+}
+
+.leaderboard-screen.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.form-image {
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    margin-left: 5px;
+    top: 10px;
+  }
