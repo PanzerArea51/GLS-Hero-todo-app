@@ -1,4 +1,4 @@
-localStorage.clear();
+localStorage.clear()
 // Initialize task and category data
 let coins = JSON.parse(localStorage.getItem("coins")) || 0; // Load coins from localStorage, or initialize at 0
 let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Load tasks from localStorage, or initialize empty array
@@ -10,73 +10,75 @@ let categories = [
 let selectedCategory = categories[0]; // Default selected category
 // XP values for different difficulties
 const XP_VALUES = {
-  easy: 10,
-  medium: 20,
-  hard: 25
+  easy: 3,
+  medium: 3,
+  hard: 3
 };
 
 // Predefined tasks
 const predefinedTasks = [
-  { id: 1, task: "Morning Stretch Routine", description: "A 10-minute series of stretches to wake up the body, focusing on neck, back, and legs.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 2, task: "Walking or Jogging Around Campus", description: "A brisk walk or jog around the school grounds for 15-30 minutes.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 3, task: "Bodyweight Squats", description: "3 sets of 20-30 squats to strengthen legs and glutes.", category: "Physical", difficulty: "medium", xp: 20 },
-  { id: 4, task: "Push-Ups", description: "3 sets of 10-20 push-ups for upper body strength.", category: "Physical", difficulty: "medium", xp: 20 },
-  { id: 5, task: "Lunges", description: "3 sets of 10 lunges per leg to target the legs and core.", category: "Physical", difficulty: "medium", xp: 20 },
-  { id: 6, task: "Planks", description: "Hold a plank for 30 seconds to 1 minute for core strengthening.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 7, task: "Jumping Jacks", description: "3 sets of 30-50 jumping jacks for a full-body warm-up.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 8, task: "High Knees", description: "3 sets of 30 seconds of high knees to elevate the heart rate.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 9, task: "Dancing", description: "Put on some music and dance for 10-15 minutes to boost mood and get moving.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 10, task: "Stair Climbing", description: "Use the stairs in the dormitory or on campus for 10-15 minutes for a great lower body workout.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 11, task: "Walking Lunges", description: "Perform walking lunges around a hallway or outside for 10 minutes to work on balance and leg strength.", category: "Physical", difficulty: "medium", xp: 20 },
-  { id: 12, task: "Mountain Climbers", description: "Do 3 sets of 30 seconds to engage the core, arms, and legs.", category: "Physical", difficulty: "medium", xp: 20 },
-  { id: 13, task: "Burpees", description: "Do 3 sets of 10-15 burpees for a full-body workout that boosts cardiovascular fitness.", category: "Physical", difficulty: "hard", xp: 30 },
-  { id: 14, task: "Wall Sits", description: "Hold a wall sit for 30-60 seconds to strengthen the quads.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 15, task: "Tennis Ball or Ping-Pong Drills", description: "Use a ball to practice quick hand-eye coordination or solo ping-pong drills if you have access to a table.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 16, task: "Yoga Flow", description: "Dedicate 10-15 minutes to a beginner yoga sequence, focusing on flexibility and breathing.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 17, task: "Skipping Rope", description: "A 5-10 minute session of skipping rope for cardio and coordination.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 18, task: "Shadow Boxing", description: "Perform 3 rounds of 2-3 minutes of shadow boxing to improve agility and endurance.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 19, task: "Sit-Ups or Crunches", description: "3 sets of 15-30 sit-ups or crunches for core strength.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 20, task: "Leg Raises", description: "Perform 3 sets of 15 leg raises to target the lower abs.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 21, task: "Tricep Dips", description: "Use a bench or stable surface for 3 sets of 10-15 tricep dips.", category: "Physical", difficulty: "medium", xp: 15 },
-  { id: 22, task: "Jump Squats", description: "3 sets of 10-15 jump squats for explosive leg power and cardiovascular fitness.", category: "Physical", difficulty: "hard", xp: 25 },
-  { id: 23, task: "Handstand Practice", description: "Spend 5-10 minutes practicing handstands against a wall for upper body and balance.", category: "Physical", difficulty: "hard", xp: 25 },
-  { id: 24, task: "Balance Exercises", description: "Stand on one leg for 30 seconds on each side or practice other balance drills.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 25, task: "Tai Chi or Qi Gong Movements", description: "Learn some basic Tai Chi or Qi Gong movements to improve flexibility, balance, and relaxation.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 26, task: "Sprints", description: "Do short, intense sprints for 10-15 minutes if you have a track or open space available.", category: "Physical", difficulty: "hard", xp: 30 },
-  { id: 27, task: "Circuit Training", description: "Create a simple circuit combining 3-5 exercises (e.g., squats, push-ups, jumping jacks, and planks) for 15-20 minutes.", category: "Physical", difficulty: "medium", xp: 20 },
-  { id: 28, task: "Outdoor Games with Friends", description: "Play spontaneous games like tag, frisbee, or soccer with friends during free time.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 29, task: "Breathing Exercises", description: "Spend 5-10 minutes doing deep breathing exercises to improve focus and relaxation.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 30, task: "Nighttime Stretch", description: "End the day with a gentle stretching routine to unwind, focusing on hamstrings, back, and shoulders.", category: "Physical", difficulty: "easy", xp: 10 },
-  { id: 31, task: "Daily Reading Habit", description: "Dedicate 20-30 minutes each day to read books, articles, or academic journals to improve comprehension and vocabulary.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 32, task: "Writing Journal", description: "Keep a daily journal or diary to practice writing skills, reflect on lessons, or document ideas.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 33, task: "Study Group Sessions", description: "Organize or join a study group to discuss class materials, quiz each other, and help one another understand difficult concepts.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 34, task: "Flashcards for Vocabulary", description: "Create flashcards to memorize important terms, definitions, or formulas.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 35, task: "Mind Mapping", description: "Create mind maps or concept maps to visualize and organize ideas for essays, projects, or revision.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 36, task: "Solve Practice Problems", description: "Solve a set of practice problems in subjects like math, physics, or chemistry to reinforce concepts.", category: "Academic", difficulty: "medium", xp: 20 },
-  { id: 37, task: "Review Notes Regularly", description: "Set aside 10-15 minutes every day to review notes from the day’s classes.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 38, task: "Write Summaries", description: "Summarize each day’s lesson in a few sentences to enhance understanding and retention.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 39, task: "Set Daily Academic Goals", description: "Write down specific academic goals for the day.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 40, task: "Online Courses or Tutorials", description: "Take online courses or watch educational videos related to the subject to expand knowledge.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 41, task: "Create Study Guides", description: "Develop personalized study guides before exams, including key concepts and formulas.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 42, task: "Time Management Techniques", description: "Practice time management by creating a daily or weekly academic schedule.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 43, task: "Peer Teaching", description: "Offer to explain difficult topics to peers or younger students.", category: "Academic", difficulty: "medium", xp: 20 },
-  { id: 44, task: "Writing Essays", description: "Write short essays or practice writing on various topics to develop writing skills.", category: "Academic", difficulty: "medium", xp: 20 },
-  { id: 45, task: "Participate in Debates", description: "Join a debate club or practice debating on various academic topics.", category: "Academic", difficulty: "hard", xp: 25 },
-  { id: 46, task: "Create a Study Routine", description: "Design a daily or weekly routine that includes time for reading, writing, and problem-solving.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 47, task: "Research Projects", description: "Work on independent research projects that interest you.", category: "Academic", difficulty: "hard", xp: 30 },
-  { id: 48, task: "Literature Review", description: "Review a book, article, or academic paper critically, noting key arguments and evidence.", category: "Academic", difficulty: "hard", xp: 25 },
-  { id: 49, task: "Problem-Solving Challenges", description: "Take part in academic challenges like logic puzzles, coding problems, or math olympiads.", category: "Academic", difficulty: "hard", xp: 25 },
-  { id: 50, task: "Create Diagrams or Charts", description: "Use diagrams, flowcharts, or graphs to represent complex information.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 51, task: "Language Learning", description: "Dedicate time to learning a new language using apps, flashcards, or language exchange.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 52, task: "Class Discussion or Seminar", description: "Engage in class discussions or attend seminars/workshops.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 53, task: "Quiz Yourself", description: "Create or use online quizzes to test your knowledge of a subject.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 54, task: "Research Current Events", description: "Stay updated with current affairs by reading newspapers or watching the news.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 55, task: "Develop Critical Thinking Skills", description: "Practice critical thinking exercises such as analyzing an argument or identifying fallacies.", category: "Academic", difficulty: "hard", xp: 25 },
-  { id: 56, task: "Create a Blog or Academic Journal", description: "Start a blog or journal where you write about your academic interests.", category: "Academic", difficulty: "hard", xp: 25 },
-  { id: 57, task: "Attend Office Hours", description: "Utilize teachers' office hours to discuss questions and clarify doubts.", category: "Academic", difficulty: "easy", xp: 10 },
-  { id: 58, task: "Literary Analysis", description: "Practice analyzing literature by reading novels or poems.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 59, task: "Public Speaking Practice", description: "Practice public speaking by presenting on a topic of interest.", category: "Academic", difficulty: "medium", xp: 15 },
-  { id: 60, task: "Prepare for Exams Early", description: "Start preparing for exams well in advance, reviewing and testing yourself regularly.", category: "Academic", difficulty: "hard", xp: 30 },
+    { id: 1, task: "A 10-minute series of stretches to wake up the body, focusing on neck, back, and legs.", description: "Morning Stretch Routine", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 2, task: "A brisk walk or jog around the school grounds for 15-30 minutes.", description: "Walking or Jogging Around Campus", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 3, task: "3 sets of 20-30 squats to strengthen legs and glutes.", description: "Bodyweight Squats", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 4, task: "3 sets of 10-20 push-ups for upper body strength.", description: "Push-Ups", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 5, task: "3 sets of 10 lunges per leg to target the legs and core.", description: "Lunges", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 6, task: "Hold a plank for 30 seconds to 1 minute for core strengthening.", description: "Planks", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 7, task: "3 sets of 30-50 jumping jacks for a full-body warm-up.", description: "Jumping Jacks", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 8, task: "3 sets of 30 seconds of high knees to elevate the heart rate.", description: "High Knees", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 9, task: "Put on some music and dance for 10-15 minutes to boost mood and get moving.", description: "Dancing", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 10, task: "Use the stairs in the dormitory or on campus for 10-15 minutes for a great lower body workout.", description: "Stair Climbing", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 11, task: "Perform walking lunges around a hallway or outside for 10 minutes to work on balance and leg strength.", description: "Walking Lunges", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 12, task: "Do 3 sets of 30 seconds to engage the core, arms, and legs.", description: "Mountain Climbers", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 13, task: "Do 3 sets of 10-15 burpees for a full-body workout that boosts cardiovascular fitness.", description: "Burpees", category: "Physical", difficulty: "hard", xp: 3 },
+    { id: 14, task: "Hold a wall sit for 30-60 seconds to strengthen the quads.", description: "Wall Sits", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 15, task: "Use a ball to practice quick hand-eye coordination or solo ping-pong drills if you have access to a table.", description: "Tennis Ball or Ping-Pong Drills", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 16, task: "Dedicate 10-15 minutes to a beginner yoga sequence, focusing on flexibility and breathing.", description: "Yoga Flow", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 17, task: "A 5-10 minute session of skipping rope for cardio and coordination.", description: "Skipping Rope", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 18, task: "Perform 3 rounds of 2-3 minutes of shadow boxing to improve agility and endurance.", description: "Shadow Boxing", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 19, task: "3 sets of 15-30 sit-ups or crunches for core strength.", description: "Sit-Ups or Crunches", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 20, task: "Perform 3 sets of 15 leg raises to target the lower abs.", description: "Leg Raises", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 21, task: "Use a bench or stable surface for 3 sets of 10-15 tricep dips.", description: "Tricep Dips", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 22, task: "3 sets of 10-15 jump squats for explosive leg power and cardiovascular fitness.", description: "Jump Squats", category: "Physical", difficulty: "hard", xp: 3 },
+    { id: 23, task: "Spend 5-10 minutes practicing handstands against a wall for upper body and balance.", description: "Handstand Practice", category: "Physical", difficulty: "hard", xp: 3 },
+    { id: 24, task: "Stand on one leg for 30 seconds on each side or practice other balance drills.", description: "Balance Exercises", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 25, task: "Learn some basic Tai Chi or Qi Gong movements to improve flexibility, balance, and relaxation.", description: "Tai Chi or Qi Gong Movements", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 26, task: "Do short, intense sprints for 10-15 minutes if you have a track or open space available.", description: "Sprints", category: "Physical", difficulty: "hard", xp: 3 },
+    { id: 27, task: "Create a simple circuit combining 3-5 exercises (e.g., squats, push-ups, jumping jacks, and planks) for 15-20 minutes.", description: "Circuit Training", category: "Physical", difficulty: "medium", xp: 3 },
+    { id: 28, task: "Play spontaneous games like tag, frisbee, or soccer with friends during free time.", description: "Outdoor Games with Friends", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 29, task: "Spend 5-10 minutes doing deep breathing exercises to improve focus and relaxation.", description: "Breathing Exercises", category: "Physical", difficulty: "easy", xp: 3 },
+    { id: 30, task: "End the day with a gentle stretching routine to unwind, focusing on hamstrings, back, and shoulders.", description: "Nighttime Stretch", category: "Physical", difficulty: "easy", xp: 3 },
+  
+      { id: 31, task: "Dedicate 20-30 minutes each day to read books, articles, or academic journals to improve comprehension and vocabulary.", description: "Daily Reading Habit", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 32, task: "Keep a daily journal or diary to practice writing skills, reflect on lessons, or document ideas.", description: "Writing Journal", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 33, task: "Organize or join a study group to discuss class materials, quiz each other, and help one another understand difficult concepts.", description: "Study Group Sessions", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 34, task: "Create flashcards to memorize important terms, definitions, or formulas.", description: "Flashcards for Vocabulary", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 35, task: "Create mind maps or concept maps to visualize and organize ideas for essays, projects, or revision.", description: "Mind Mapping", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 36, task: "Solve a set of practice problems in subjects like math, physics, or chemistry to reinforce concepts.", description: "Solve Practice Problems", category: "Academic", difficulty: "medium", xp: 20 },
+      { id: 37, task: "Set aside 10-15 minutes every day to review notes from the day’s classes.", description: "Review Notes Regularly", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 38, task: "Summarize each day’s lesson in a few sentences to enhance understanding and retention.", description: "Write Summaries", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 39, task: "Write down specific academic goals for the day.", description: "Set Daily Academic Goals", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 40, task: "Take online courses or watch educational videos related to the subject to expand knowledge.", description: "Online Courses or Tutorials", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 41, task: "Develop personalized study guides before exams, including key concepts and formulas.", description: "Create Study Guides", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 42, task: "Practice time management by creating a daily or weekly academic schedule.", description: "Time Management Techniques", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 43, task: "Offer to explain difficult topics to peers or younger students.", description: "Peer Teaching", category: "Academic", difficulty: "medium", xp: 20 },
+      { id: 44, task: "Write short essays or practice writing on various topics to develop writing skills.", description: "Writing Essays", category: "Academic", difficulty: "medium", xp: 20 },
+      { id: 45, task: "Join a debate club or practice debating on various academic topics.", description: "Participate in Debates", category: "Academic", difficulty: "hard", xp: 25 },
+      { id: 46, task: "Design a daily or weekly routine that includes time for reading, writing, and problem-solving.", description: "Create a Study Routine", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 47, task: "Work on independent research projects that interest you.", description: "Research Projects", category: "Academic", difficulty: "hard", xp: 30 },
+      { id: 48, task: "Review a book, article, or academic paper critically, noting key arguments and evidence.", description: "Literature Review", category: "Academic", difficulty: "hard", xp: 25 },
+      { id: 49, task: "Take part in academic challenges like logic puzzles, coding problems, or math olympiads.", description: "Problem-Solving Challenges", category: "Academic", difficulty: "hard", xp: 25 },
+      { id: 50, task: "Use diagrams, flowcharts, or graphs to represent complex information.", description: "Create Diagrams or Charts", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 51, task: "Dedicate time to learning a new language using apps, flashcards, or language exchange.", description: "Language Learning", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 52, task: "Engage in class discussions or attend seminars/workshops.", description: "Class Discussion or Seminar", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 53, task: "Create or use online quizzes to test your knowledge of a subject.", description: "Quiz Yourself", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 54, task: "Stay updated with current affairs by reading newspapers or watching the news.", description: "Research Current Events", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 55, task: "Practice critical thinking exercises such as analyzing an argument or identifying fallacies.", description: "Develop Critical Thinking Skills", category: "Academic", difficulty: "hard", xp: 25 },
+      { id: 56, task: "Start a blog or journal where you write about your academic interests.", description: "Create a Blog or Academic Journal", category: "Academic", difficulty: "hard", xp: 25 },
+      { id: 57, task: "Utilize teachers' office hours to discuss questions and clarify doubts.", description: "Attend Office Hours", category: "Academic", difficulty: "easy", xp: 10 },
+      { id: 58, task: "Practice analyzing literature by reading novels or poems.", description: "Literary Analysis", category: "Academic", difficulty: "medium", xp: 15 },
+      { id: 59, task: "Practice public speaking by presenting on a topic of interest.", description: "Public Speaking Practice", category: "Academic", difficulty: "medium", xp: 15 },
+    
+      { id: 60, task: "Prepare for Exams Early", description: "Start preparing for exams well in advance, reviewing and testing yourself regularly.", category: "Academic", difficulty: "hard", xp: 30 },
   { id: 61, task: "Morning Meditation", description: "Start your day with 5-10 minutes of meditation to center yourself and cultivate a peaceful mind.", category: "Spiritual", difficulty: "easy", xp: 10 },
   { id: 62, task: "Mindful Breathing", description: "Practice deep, mindful breathing for 5 minutes whenever you feel stressed or need to refocus.", category: "Spiritual", difficulty: "easy", xp: 10 },
   { id: 63, task: "Gratitude Journaling", description: "Write down three things you’re grateful for each morning or evening to cultivate an attitude of gratitude.", category: "Spiritual", difficulty: "easy", xp: 10 },
@@ -86,11 +88,11 @@ const predefinedTasks = [
   { id: 67, task: "Reading Sacred Texts", description: "Dedicate time to reading spiritual texts or literature that inspire you.", category: "Spiritual", difficulty: "medium", xp: 15 },
   { id: 68, task: "Chanting or Singing Mantras", description: "Chant or listen to spiritual mantras, hymns, or songs to uplift your soul.", category: "Spiritual", difficulty: "easy", xp: 10 },
   { id: 69, task: "Praying or Meditation on Purpose", description: "Spend time each day praying or meditating on your higher purpose.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 70, task: "Mindfulness Practice", description: "Engage in mindfulness throughout your day, paying full attention to each moment.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 71, task: "Acts of Kindness", description: "Make it a daily practice to perform small acts of kindness.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 72, task: "Gratitude Walk", description: "Go on a walk with the intention of reflecting on everything you’re grateful for.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 73, task: "Visualization Practice", description: "Take a few minutes each day to visualize your dreams and goals.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 74, task: "Fasting or Simple Eating", description: "Practice fasting or simple eating to develop self-discipline and gratitude for food.", category: "Spiritual", difficulty: "medium", xp: 15 },
+  { id: 70, task: "Wake Up For Qiammulail", description: "Engage in mindfulness throughout your day, paying full attention to each moment.", category: "Spiritual", difficulty: "medium", xp: 15 },
+  { id: 71, task: "Read 1 Juzuk A Day", description: "Make it a daily practice to perform small acts of kindness.", category: "Spiritual", difficulty: "easy", xp: 10 },
+  { id: 72, task: "Memorise 2 of 40 Hadith by Imam An-Nabawi", description: "Go on a walk with the intention of reflecting on everything you’re grateful for.", category: "Spiritual", difficulty: "easy", xp: 10 },
+  { id: 73, task: "Fast For 3 Days", description: "Take a few minutes each day to visualize your dreams and goals.", category: "Spiritual", difficulty: "medium", xp: 15 },
+  { id: 74, task: "Pick up 5 pieces of trash every day", description: "Practice fasting or simple eating to develop self-discipline and gratitude for food.", category: "Spiritual", difficulty: "medium", xp: 15 },
   { id: 75, task: "Sacred Space Creation", description: "Create a small sacred space in your room for spiritual practice.", category: "Spiritual", difficulty: "easy", xp: 10 },
   { id: 76, task: "Yoga or Spiritual Movement", description: "Engage in daily yoga or other forms of mindful movement.", category: "Spiritual", difficulty: "medium", xp: 15 },
   { id: 77, task: "Contemplative Journaling", description: "Journal about your spiritual journey, reflections, and growth.", category: "Spiritual", difficulty: "medium", xp: 15 },
@@ -112,9 +114,9 @@ const predefinedTasks = [
 
 // Define images for each tier in each category
 const CATEGORY_IMAGES = {
-  Physical: ["muscle.png", "muscle2.png", "muscle3.png"],
-  Academic: ["enchanted_book.png", "academic-tier2.png", "academic-tier3.png"],
-  Spiritual: ["leaf.png", "spiritual-tier2.png", "spiritual-tier3.png"]
+  Physical: ["muscle.png", "muscle2.png", "mya.png"],
+  Academic: ["enchanted_book.png", "enchanted_book2.png", "qayyum.png"],
+  Spiritual: ["leaf.png", "tree.png", "hadif.png"]
 };
 // Initialize or retrieve XP data
 let xpData = JSON.parse(localStorage.getItem("xpData")) || {
@@ -304,26 +306,27 @@ const formScreen = document.getElementById("form-screen");
 const formBackBtn = document.getElementById("form-back-btn");
 // Show the form screen when the menu button is clicked
 menuBtn.addEventListener("click", () => {
-  formScreen.style.display = "flex";
+  formScreen.style.display = "block";
 });
 // Hide the form screen when the back button is clicked
 formBackBtn.addEventListener("click", () => {
   formScreen.style.display = "none";
 });
 
-const leaderboardScreen = document.getElementById("leaderboard-screen");
+const Leaderboard = document.getElementById("leaderboard-screen");
+// Show the leaderboard screen when the leaderboard button is clicked
+leaderboardBtn.addEventListener("click", () => {
+  Leaderboard.style.display = "flex";
+ // Assuming screenWrapper is the main screen
+});
+
+const leaderboardBackBtn = document.getElementById("leaderboard-back-btn");
+
 
 
 // Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
-  leaderboardBtn.addEventListener("click", () => {
-    console.log("Leaderboard button clicked");
-    leaderboardScreen.style.display = "flex"; // Show leaderboard screen
-    leaderboardScreen.style.visibility = "visible";
-    leaderboardScreen.style.opacity = "1";
 
-  });
-  leaderboardBtn.addEventListener("click", () => screenWrapper.classList.add("leaderboard-screen"));
   menuBtn.addEventListener("click", () => screenWrapper.classList.add("form-screen screen"));
   backBtn.addEventListener("click", () => screenWrapper.classList.remove("show-category"));
   addTaskBtn.addEventListener("click", toggleAddTaskForm);
@@ -345,3 +348,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
 addTaskBtn.style.display = "none"; // Hide add task button
 console.log("Coins updated to:", coins);
+
+
+const leaderboardScreen = document.getElementById("leaderboard-screen");
+
+menuBtn.addEventListener("click", () => {
+  formScreen.classList.remove("slide-out");
+  formScreen.classList.add("slide-in");
+  formScreen.style.display = "block";
+});
+
+// Hide the form screen with animation
+formBackBtn.addEventListener("click", () => {
+  formScreen.classList.remove("slide-in");
+  formScreen.classList.add("slide-out");
+  setTimeout(() => {
+      formScreen.style.display = "none";
+  }, 500); // Match the animation duration
+});
+
+// Show the leaderboard screen with animation
+leaderboardBtn.addEventListener("click", () => {
+  leaderboardScreen.classList.remove("fade-out");
+  leaderboardScreen.classList.add("fade-in");
+  leaderboardScreen.style.display = "block";
+});
+
+// Hide the leaderboard screen with animation
+leaderboardBackBtn.addEventListener("click", () => {
+  leaderboardScreen.classList.remove("fade-in");
+  leaderboardScreen.classList.add("fade-out");
+  setTimeout(() => {
+      leaderboardScreen.style.display = "none";
+  }, 500); // Match the animation duration
+
+      
+});
+
+const submissionsKey = "studentSubmissions"; // Key for submissions storage
+
+// Save a submission to localStorage
+const saveSubmission = (submission) => {
+  const submissions = JSON.parse(localStorage.getItem(submissionsKey)) || [];
+  submissions.push(submission);
+  localStorage.setItem(submissionsKey, JSON.stringify(submissions));
+};
+
+// Handle task submission
+document.querySelectorAll(".form .submit").forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    const form = button.closest(".form");
+    const name = form.querySelector("#firstname").value.trim();
+    const studentId = form.querySelector("#lastname").value.trim();
+    const fileInput = form.querySelector("#file");
+    const category = form.querySelector(".title").textContent.trim();
+    
+    if (!name || !studentId || !fileInput.files.length) {
+      alert("Please complete all fields.");
+      return;
+    }
+    
+    // Create a submission object
+    const submission = {
+      name,
+      studentId,
+      category,
+      fileName: fileInput.files[0].name,
+      status: "Pending", // Initial status
+    };
+
+    // Save submission to localStorage
+    saveSubmission(submission);
+
+    alert("Task submitted! Await teacher approval.");
+    form.reset();
+  });
+});
+
+const storedXp = JSON.parse(localStorage.getItem('xp')) || 0;
+if (storedXp > 0) {
+  xpData.Physical.levelXP += 10; 
+  console.log("added")
+  localStorage.removeItem('xp'); // Clear the stored XP after adding it
+}
