@@ -1,4 +1,4 @@
-
+//localStorage.clear();
 // Initialize task and category data
 let coins = JSON.parse(localStorage.getItem("coins")) || 0; // Load coins from localStorage, or initialize at 0
 let tasks = JSON.parse(localStorage.getItem("tasks")) || []; // Load tasks from localStorage, or initialize empty array
@@ -15,6 +15,8 @@ const XP_VALUES = {
   hard: 3,
   form: 10
 };
+
+
 
 // Predefined tasks
 const predefinedTasks = [
@@ -79,45 +81,77 @@ const predefinedTasks = [
       { id: 58, task: "Practice analyzing literature by reading novels or poems.", description: "Literary Analysis", category: "Academic", difficulty: "medium", xp: 15 },
       { id: 59, task: "Practice public speaking by presenting on a topic of interest.", description: "Public Speaking Practice", category: "Academic", difficulty: "medium", xp: 15 },
     
-      { id: 60, task: "Prepare for Exams Early", description: "Start preparing for exams well in advance, reviewing and testing yourself regularly.", category: "Academic", difficulty: "hard", xp: 30 },
-  { id: 61, task: "Morning Meditation", description: "Start your day with 5-10 minutes of meditation to center yourself and cultivate a peaceful mind.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 62, task: "Mindful Breathing", description: "Practice deep, mindful breathing for 5 minutes whenever you feel stressed or need to refocus.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 63, task: "Gratitude Journaling", description: "Write down three things you’re grateful for each morning or evening to cultivate an attitude of gratitude.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 64, task: "Daily Affirmations", description: "Recite positive affirmations or mantras that resonate with you to boost your self-esteem and inner strength.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 65, task: "Silent Reflection", description: "Spend 10-15 minutes each day in silence, reflecting on your thoughts, feelings, and the events of the day.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 66, task: "Nature Walks", description: "Take a walk in nature to connect with the natural world and foster a sense of gratitude for life.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 67, task: "Reading Sacred Texts", description: "Dedicate time to reading spiritual texts or literature that inspire you.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 68, task: "Chanting or Singing Mantras", description: "Chant or listen to spiritual mantras, hymns, or songs to uplift your soul.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 69, task: "Praying or Meditation on Purpose", description: "Spend time each day praying or meditating on your higher purpose.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 70, task: "Wake Up For Qiammulail", description: "Engage in mindfulness throughout your day, paying full attention to each moment.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 71, task: "Read 1 Juzuk A Day", description: "Make it a daily practice to perform small acts of kindness.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 72, task: "Memorise 2 of 40 Hadith by Imam An-Nabawi", description: "Go on a walk with the intention of reflecting on everything you’re grateful for.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 73, task: "Fast For 3 Days", description: "Take a few minutes each day to visualize your dreams and goals.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 74, task: "Pick up 5 pieces of trash every day", description: "Practice fasting or simple eating to develop self-discipline and gratitude for food.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 75, task: "Sacred Space Creation", description: "Create a small sacred space in your room for spiritual practice.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 76, task: "Yoga or Spiritual Movement", description: "Engage in daily yoga or other forms of mindful movement.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 77, task: "Contemplative Journaling", description: "Journal about your spiritual journey, reflections, and growth.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 78, task: "Spiritual Study", description: "Dedicate 15-20 minutes each day to studying a spiritual topic that resonates with you.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 79, task: "Forgiveness Practice", description: "Reflect on grudges or negative feelings and practice forgiveness.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 80, task: "Service to Others", description: "Volunteer your time to help others, assisting with tasks or community service projects.", category: "Spiritual", difficulty: "hard", xp: 20 },
-  { id: 81, task: "Evening Prayer or Reflection", description: "End your day with prayer, reflection, or gratitude to connect with peace.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 82, task: "Focusing on the Present Moment", description: "Practice staying present, focusing on the task at hand.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 83, task: "Listening to Spiritual Music", description: "Listen to calming spiritual music or sounds of nature.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 84, task: "Surrendering and Letting Go", description: "Take a moment to surrender worries, trust life, and let go of what's beyond control.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 85, task: "Meditating on Compassion", description: "Meditate on compassion for yourself and others.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 86, task: "Creating a Vision Board", description: "Create a vision board that represents your spiritual goals and aspirations.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 87, task: "Reading Inspirational Quotes", description: "Start or end your day by reading inspirational quotes from spiritual teachers.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 88, task: "Prayer Walks", description: "Take a walk and use the time to pray or reflect on your spiritual connection with the world.", category: "Spiritual", difficulty: "medium", xp: 15 },
-  { id: 89, task: "Listening to Spiritual Podcasts", description: "Listen to spiritual podcasts to deepen your understanding of spiritual concepts.", category: "Spiritual", difficulty: "easy", xp: 10 },
-  { id: 90, task: "Meditative Art or Crafting", description: "Engage in art like drawing or painting as a form of meditation and self-expression.", category: "Spiritual", difficulty: "medium", xp: 15 },
-];
+      { id: 60, task: "Start preparing for exams well in advance, reviewing and testing yourself regularly.", description: "Prepare for Exams Early", category: "Academic", difficulty: "hard", xp: 30 },
+      { id: 61, task: "Start your day with 5-10 minutes of meditation to center yourself and cultivate a peaceful mind.", description: "Morning Meditation", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 62, task: "Practice deep, mindful breathing for 5 minutes whenever you feel stressed or need to refocus.", description: "Mindful Breathing", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 63, task: "Write down three things you’re grateful for each morning or evening to cultivate an attitude of gratitude.", description: "Gratitude Journaling", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 64, task: "Recite positive affirmations or mantras that resonate with you to boost your self-esteem and inner strength.", description: "Daily Affirmations", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 65, task: "Spend 10-15 minutes each day in silence, reflecting on your thoughts, feelings, and the events of the day.", description: "Silent Reflection", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 66, task: "Take a walk in nature to connect with the natural world and foster a sense of gratitude for life.", description: "Nature Walks", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 67, task: "Dedicate time to reading spiritual texts or literature that inspire you.", description: "Reading Sacred Texts", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 68, task: "Chant or listen to spiritual mantras, hymns, or songs to uplift your soul.", description: "Chanting or Singing Mantras", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 69, task: "Spend time each day praying or meditating on your higher purpose.", description: "Praying or Meditation on Purpose", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 70, task: "Engage in mindfulness throughout your day, paying full attention to each moment.", description: "Wake Up For Qiammulail", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 71, task: "Make it a daily practice to perform small acts of kindness.", description: "Read 1 Juzuk A Day", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 72, task: "Go on a walk with the intention of reflecting on everything you’re grateful for.", description: "Memorise 2 of 40 Hadith by Imam An-Nabawi", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 73, task: "Take a few minutes each day to visualize your dreams and goals.", description: "Fast For 3 Days", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 74, task: "Practice fasting or simple eating to develop self-discipline and gratitude for food.", description: "Pick up 5 pieces of trash every day", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 75, task: "Create a small sacred space in your room for spiritual practice.", description: "Sacred Space Creation", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 76, task: "Engage in daily yoga or other forms of mindful movement.", description: "Yoga or Spiritual Movement", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 77, task: "Journal about your spiritual journey, reflections, and growth.", description: "Contemplative Journaling", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 78, task: "Dedicate 15-20 minutes each day to studying a spiritual topic that resonates with you.", description: "Spiritual Study", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 79, task: "Reflect on grudges or negative feelings and practice forgiveness.", description: "Forgiveness Practice", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 80, task: "Volunteer your time to help others, assisting with tasks or community service projects.", description: "Service to Others", category: "Spiritual", difficulty: "hard", xp: 20 },
+      { id: 81, task: "End your day with prayer, reflection, or gratitude to connect with peace.", description: "Evening Prayer or Reflection", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 82, task: "Practice staying present, focusing on the task at hand.", description: "Focusing on the Present Moment", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 83, task: "Listen to calming spiritual music or sounds of nature.", description: "Listening to Spiritual Music", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 84, task: "Take a moment to surrender worries, trust life, and let go of what's beyond control.", description: "Surrendering and Letting Go", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 85, task: "Meditate on compassion for yourself and others.", description: "Meditating on Compassion", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 86, task: "Create a vision board that represents your spiritual goals and aspirations.", description: "Creating a Vision Board", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 87, task: "Start or end your day by reading inspirational quotes from spiritual teachers.", description: "Reading Inspirational Quotes", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 88, task: "Take a walk and use the time to pray or reflect on your spiritual connection with the world.", description: "Prayer Walks", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 89, task: "Listen to spiritual podcasts to deepen your understanding of spiritual concepts.", description: "Listening to Spiritual Podcasts", category: "Spiritual", difficulty: "easy", xp: 10 },
+      { id: 90, task: "Engage in art like drawing or painting as a form of meditation and self-expression.", description: "Meditative Art or Crafting", category: "Spiritual", difficulty: "medium", xp: 15 },
+      { id: 90, task: "Set alarms to pray each salah during its prescribed time, starting with Fajr.", description: "Perform Five Daily Prayers on Time", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 91, task: "Start with 2 rak’ahs before Fajr and the Sunnah prayers after Maghrib and ‘Isha. Gradually include more Sunnah rak’ahs.", description: "Incorporate Sunnah Prayers", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 92, task: "Wake up 20–30 minutes before Fajr to perform at least 2 rak’ahs of Tahajjud. Start with once a week, then increase frequency.", description: "Pray Tahajjud Regularly", category: "Spiritual", difficulty: "hard", xp: 20 },
+{ id: 93, task: "Dedicate at least 15 minutes each day to reciting Qur’an, even if only a few verses, with focus on Tajweed.", description: "Recite the Qur’an Daily", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 94, task: "Choose one short surah or a few ayahs each week. Repeat them during salah to reinforce memorization.", description: "Memorize Qur’an", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 95, task: "Recite 'SubhanAllah,' 'Alhamdulillah,' and 'Allahu Akbar' 33 times after each prayer, along with 'La ilaha illallah.'", description: "Make Daily Dhikr", category: "Spiritual", difficulty: "easy", xp: 10 },
+{ id: 96, task: "Download an app or use a booklet to help you recite adhkar for protection and blessings. Aim to be consistent daily.", description: "Say Morning and Evening Adhkar", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 97, task: "Read the explanation of one ayah or surah weekly using a reliable tafsir book (e.g., Tafsir Ibn Kathir).", description: "Study Tafsir (Qur’anic Explanation)", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 98, task: "Learn a new hadith weekly, focusing on its meaning and practical application. Start with Riyad as-Salihin.", description: "Understand Hadith", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 99, task: "Find a local mosque or online source offering lectures on various topics (e.g., Seerah, Fiqh).", description: "Attend a Weekly Islamic Lecture", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 100, task: "Study the 99 Names of Allah, focusing on one name per day or week. Reflect on its meaning and incorporate it into your du’a.", description: "Learn Allah’s Names", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 101, task: "Learn basic Arabic phrases and vocabulary to understand the Qur’an better. Practice 5–10 words daily.", description: "Improve Arabic", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 102, task: "Pause before responding in anger or frustration. Use kind words, even during conflicts.", description: "Practice Patience in Daily Life", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 103, task: "Write down three things you’re thankful for every day and say, 'Alhamdulillah' for them.", description: "Be Grateful", category: "Spiritual", difficulty: "easy", xp: 10 },
+{ id: 104, task: "If you hurt someone, seek their forgiveness promptly. Likewise, forgive others for their mistakes.", description: "Apologize and Forgive", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 105, task: "Refrain from backbiting, gossip, or harsh words. Monitor your speech for improvement.", description: "Speak Kindly", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 106, task: "Donate a small amount of money weekly or set aside spare change for sadaqah.", description: "Give Charity Regularly", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 107, task: "Offer to help during events, clean the mosque, or teach others.", description: "Volunteer at the Mosque", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 108, task: "Call or visit family members you haven’t spoken to in a while. Be the first to reach out.", description: "Strengthen Family Ties", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 109, task: "Assist a neighbor, coworker, or stranger without expecting anything in return.", description: "Help Someone in Need", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 110, task: "Share reminders gently and inspire others through your actions rather than lectures.", description: "Encourage Islamic Practices in Others", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 111, task: "Reflect on your progress as a Muslim and set small, achievable goals each week.", description: "Set Weekly Goals", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 112, task: "Reduce time spent on social media or entertainment and use it for Islamic learning instead.", description: "Limit Screen Time", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 113, task: "Make it a habit to wake up before Fajr and start your day with a calm mind.", description: "Wake Up Early", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 114, task: "Fast on Mondays and Thursdays or the White Days (13th, 14th, and 15th of each lunar month).", description: "Fast Voluntarily", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 115, task: "Before any action, ask yourself if it aligns with seeking Allah’s pleasure.", description: "Reflect on Intentions", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 116, task: "Plan to increase Qur’an recitation, give more charity, and perform I’tikaf during the last 10 days.", description: "Observe Extra Worship During Ramadan", category: "Spiritual", difficulty: "hard", xp: 20 },
+{ id: 117, task: "Learn about and engage in practices for Eid, Islamic New Year, and Ashura with your family.", description: "Celebrate Islamic Events", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 118, task: "Eat halal and healthy foods, drink water consciously, and stay physically active to serve Allah better.", description: "Maintain Physical Health", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 119, task: "Meditate by reflecting on Allah’s creation and your blessings. Use dhikr as a way to calm your mind during stress.", description: "Mental Health Self-Care", category: "Spiritual", difficulty: "medium", xp: 15 },
+
+
+    ]      
 
 
 // Define images for each tier in each category
 const CATEGORY_IMAGES = {
-  Physical: ["muscle.png", "muscle2.png", "mya.png"],
-  Academic: ["enchanted_book.png", "enchanted_book2.png", "qayyum.png"],
-  Spiritual: ["low hadif.png", "tree.png", "twin of faith.png"]
+  Physical: ["mya1.png", "mya2.png", "mya.png"],
+  Academic: ["qayyum1.png", "qayyum2.png", "qayyum.png"],
+  Spiritual: ["twin of faith 1.png", "tree.png", "twin of faith.png"]
 };
 // Initialize or retrieve XP data
 let xpData = JSON.parse(localStorage.getItem("xpData")) || {
@@ -164,6 +198,7 @@ const updateXPBars = () => {
   categories.forEach(category => {
     const fill = document.getElementById(`${category.toLowerCase()}-fill`);
     const xp = xpData[category].levelXP;
+    console.log("number of xp is:",xp);
     fill.style.width = `${Math.min(xp, 100)}%`;  // Cap at 100% for visual bar
     // Update category image based on tier level of total XP
     const tier = getTierLevel(xpData[category].total);
@@ -182,8 +217,8 @@ const addXP = (category, difficulty) => {
 
   // Check if level-up is achieved (levelXP reaches 100)
   if (xpData[category].levelXP >= 100) {
-      xpData.Physical.levelXP = 0; // Reset level XP
-      xpData.Physical.total += 100; // Add 100 XP to total
+      xpData[category].levelXP = 0; // Reset level XP
+      xpData[category].total += 100; // Add 100 XP to total
       localStorage.setItem("xpData", JSON.stringify(xpData));
       renderTasks(); // Refresh task list
       xpData[category].levelXP = 0;  // Reset level XP
@@ -257,9 +292,10 @@ const renderTasks = () => {
       checkbox.checked = task.completed || false; // Track task completion
       checkbox.addEventListener("change", () => {
         if (!task.completed) {
-          addXP(task.category, task.difficulty);
+          addXP(task.category, task.difficulty); // Add XP for completing the task
         }
-        task.completed = !task.completed;
+        task.completed = !task.completed; // Toggle the completed state
+        saveTasks(); // Save updated tasks to localStorage
         renderTasks(); // Re-render tasks
       });
 
@@ -343,14 +379,17 @@ document.addEventListener("DOMContentLoaded", () => {
     option.value = category.title;
     option.textContent = category.title;
     categorySelect.appendChild(option); // Populate category select dropdown
+    
+
   });
   renderCategories(); // Render categories initially
   renderTasks(); // Render tasks initially
   updateTotals(); // Update task totals
   updateXPBars();  // Initialize progress bars
+  console.log("xp here");
 });
 
-
+updateXPBars();
 addTaskBtn.style.display = "none"; // Hide add task button
 console.log("Coins updated to:", coins);
 
@@ -389,23 +428,31 @@ leaderboardBackBtn.addEventListener("click", () => {
 });
 
 function storeFormData(event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  event.preventDefault(); // Prevent default behavior
 
-  // Capture form inputs
-  const firstName = document.getElementById("firstname").value.trim();
-  const lastName = document.getElementById("lastname").value.trim();
-  const fileInput = document.getElementById("file");
+  // Identify which button triggered the event
+  const button = event.target;
+  const form = button.closest(".form"); // Find the closest form container
+
+  // Capture inputs dynamically from the form
+  const firstName = form.querySelector("#firstname").value.trim();
+  const lastName = form.querySelector("#lastname").value.trim();
+  const fileInput = form.querySelector("#file");
 
   if (!firstName || !lastName || !fileInput.files.length) {
       alert("Please fill in all fields and attach a file.");
       return;
   }
 
+  // Extract the category from the form's title or data attribute
+  const categoryTitle = form.querySelector(".title").textContent.trim();
+
   // Create an object to store form data
   const formData = {
       firstName,
       lastName,
       fileName: fileInput.files[0].name,
+      category: categoryTitle,
       submissionDate: new Date().toISOString()
   };
 
@@ -416,27 +463,38 @@ function storeFormData(event) {
   // Save back to localStorage
   localStorage.setItem("studentSubmissions", JSON.stringify(submissions));
 
-  alert("Form data successfully saved to local storage!");
-  document.getElementById("physical-submit").reset(); // Optional: Clear form inputs
+  alert(`Form data for ${categoryTitle} successfully saved to local storage!`);
+  form.reset(); // Clear form inputs
 }
 
 // Attach event listener to the submit button
-document.getElementById("physical-submit").addEventListener("click", storeFormData);
+document.querySelectorAll(".submit").forEach((button) => {
+  button.addEventListener("click", storeFormData);
+});
 
-
-
+const something = null;
+const storedCategory = String(localStorage.getItem('something')).charAt(0).toUpperCase() + String(localStorage.getItem('something')).slice(1).toLowerCase();
 const storedXp = parseInt(localStorage.getItem('xp')) || 0;
-console.log(storedXp)
-if (storedXp > 0) {
-  xpData.Physical.levelXP += 10; 
-  console.log("added")
-  localStorage.removeItem('xp'); // Clear the stored XP after adding it
-  addXP('Physical', 'form');
-}
+console.log("stored xp is:",storedXp);
+console.log('stored category is:',storedCategory);
 
-if (storedXp > 20) {
-  xpData.Physical.levelXP += 10; 
-  console.log("added")
-  localStorage.removeItem('xp'); // Clear the stored XP after adding it
-  addXP('Physical', 'form');
-}
+
+
+xpData[storedCategory].levelXP += storedXp;
+localStorage.setItem("xpData", JSON.stringify(xpData));
+localStorage.removeItem('something');
+localStorage.removeItem('xp');
+
+console.log("idk")
+updateXPBars();
+storedCategory = null;
+console.log("levelXP");
+
+  // Save updated XP data to localStorage
+localStorage.setItem("xpData", JSON.stringify(xpData));
+console.log(`${storedXp} XP added to ${storedCategory}. Total XP: ${xpData[storedCategory].total}`);
+updateXPBars(); // Update the XP bars to reflect the changes
+  // Clear the stored data after processing
+localStorage.removeItem("storedXp");
+localStorage.removeItem("something");
+
