@@ -119,7 +119,7 @@ const predefinedTasks = [
 const CATEGORY_IMAGES = {
   Physical: ["mya1.png", "mya2.png", "mya.png"],
   Academic: ["qayyum1.png", "qayyum2.png", "qayyum.png"],
-  Spiritual: ["twin of faith 1.png", "tree.png", "twin of faith.png"]
+  Spiritual: ["twin_of_faith_1.png", "tree.png", "twin of faith.png"]
 };
 // Initialize or retrieve XP data
 let xpData = JSON.parse(localStorage.getItem("xpData")) || {
