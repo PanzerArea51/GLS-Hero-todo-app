@@ -112,14 +112,46 @@ const predefinedTasks = [
       { id: 88, task: "Take a walk and use the time to pray or reflect on your spiritual connection with the world.", description: "Prayer Walks", category: "Spiritual", difficulty: "medium", xp: 15 },
       { id: 89, task: "Listen to spiritual podcasts to deepen your understanding of spiritual concepts.", description: "Listening to Spiritual Podcasts", category: "Spiritual", difficulty: "easy", xp: 10 },
       { id: 90, task: "Engage in art like drawing or painting as a form of meditation and self-expression.", description: "Meditative Art or Crafting", category: "Spiritual", difficulty: "medium", xp: 15 },
-]      
+      { id: 90, task: "Set alarms to pray each salah during its prescribed time, starting with Fajr.", description: "Perform Five Daily Prayers on Time", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 91, task: "Start with 2 rak’ahs before Fajr and the Sunnah prayers after Maghrib and ‘Isha. Gradually include more Sunnah rak’ahs.", description: "Incorporate Sunnah Prayers", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 92, task: "Wake up 20–30 minutes before Fajr to perform at least 2 rak’ahs of Tahajjud. Start with once a week, then increase frequency.", description: "Pray Tahajjud Regularly", category: "Spiritual", difficulty: "hard", xp: 20 },
+{ id: 93, task: "Dedicate at least 15 minutes each day to reciting Qur’an, even if only a few verses, with focus on Tajweed.", description: "Recite the Qur’an Daily", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 94, task: "Choose one short surah or a few ayahs each week. Repeat them during salah to reinforce memorization.", description: "Memorize Qur’an", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 95, task: "Recite 'SubhanAllah,' 'Alhamdulillah,' and 'Allahu Akbar' 33 times after each prayer, along with 'La ilaha illallah.'", description: "Make Daily Dhikr", category: "Spiritual", difficulty: "easy", xp: 10 },
+{ id: 96, task: "Download an app or use a booklet to help you recite adhkar for protection and blessings. Aim to be consistent daily.", description: "Say Morning and Evening Adhkar", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 97, task: "Read the explanation of one ayah or surah weekly using a reliable tafsir book (e.g., Tafsir Ibn Kathir).", description: "Study Tafsir (Qur’anic Explanation)", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 98, task: "Learn a new hadith weekly, focusing on its meaning and practical application. Start with Riyad as-Salihin.", description: "Understand Hadith", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 99, task: "Find a local mosque or online source offering lectures on various topics (e.g., Seerah, Fiqh).", description: "Attend a Weekly Islamic Lecture", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 100, task: "Study the 99 Names of Allah, focusing on one name per day or week. Reflect on its meaning and incorporate it into your du’a.", description: "Learn Allah’s Names", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 101, task: "Learn basic Arabic phrases and vocabulary to understand the Qur’an better. Practice 5–10 words daily.", description: "Improve Arabic", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 102, task: "Pause before responding in anger or frustration. Use kind words, even during conflicts.", description: "Practice Patience in Daily Life", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 103, task: "Write down three things you’re thankful for every day and say, 'Alhamdulillah' for them.", description: "Be Grateful", category: "Spiritual", difficulty: "easy", xp: 10 },
+{ id: 104, task: "If you hurt someone, seek their forgiveness promptly. Likewise, forgive others for their mistakes.", description: "Apologize and Forgive", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 105, task: "Refrain from backbiting, gossip, or harsh words. Monitor your speech for improvement.", description: "Speak Kindly", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 106, task: "Donate a small amount of money weekly or set aside spare change for sadaqah.", description: "Give Charity Regularly", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 107, task: "Offer to help during events, clean the mosque, or teach others.", description: "Volunteer at the Mosque", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 108, task: "Call or visit family members you haven’t spoken to in a while. Be the first to reach out.", description: "Strengthen Family Ties", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 109, task: "Assist a neighbor, coworker, or stranger without expecting anything in return.", description: "Help Someone in Need", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 110, task: "Share reminders gently and inspire others through your actions rather than lectures.", description: "Encourage Islamic Practices in Others", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 111, task: "Reflect on your progress as a Muslim and set small, achievable goals each week.", description: "Set Weekly Goals", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 112, task: "Reduce time spent on social media or entertainment and use it for Islamic learning instead.", description: "Limit Screen Time", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 113, task: "Make it a habit to wake up before Fajr and start your day with a calm mind.", description: "Wake Up Early", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 114, task: "Fast on Mondays and Thursdays or the White Days (13th, 14th, and 15th of each lunar month).", description: "Fast Voluntarily", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 115, task: "Before any action, ask yourself if it aligns with seeking Allah’s pleasure.", description: "Reflect on Intentions", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 116, task: "Plan to increase Qur’an recitation, give more charity, and perform I’tikaf during the last 10 days.", description: "Observe Extra Worship During Ramadan", category: "Spiritual", difficulty: "hard", xp: 20 },
+{ id: 117, task: "Learn about and engage in practices for Eid, Islamic New Year, and Ashura with your family.", description: "Celebrate Islamic Events", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 118, task: "Eat halal and healthy foods, drink water consciously, and stay physically active to serve Allah better.", description: "Maintain Physical Health", category: "Spiritual", difficulty: "medium", xp: 15 },
+{ id: 119, task: "Meditate by reflecting on Allah’s creation and your blessings. Use dhikr as a way to calm your mind during stress.", description: "Mental Health Self-Care", category: "Spiritual", difficulty: "medium", xp: 15 },
+
+
+    ]      
 
 
 // Define images for each tier in each category
 const CATEGORY_IMAGES = {
   Physical: ["mya1.png", "mya2.png", "mya.png"],
   Academic: ["qayyum1.png", "qayyum2.png", "qayyum.png"],
-  Spiritual: ["twin_of_faith_1.png", "tree.png", "twin of faith.png"]
+  Spiritual: ["twin of faith 1.png", "tree.png", "twin of faith.png"]
 };
 // Initialize or retrieve XP data
 let xpData = JSON.parse(localStorage.getItem("xpData")) || {
